@@ -24,7 +24,7 @@ class Registration extends React.Component {
     e.preventDefault();
     const { username, email,mobile, password } = this.state;
     axios
-      .post(`http://localhost:4000/register`, {
+      .post(`http://localhost:4000/user`, {
         username,
         mobile,
         email,
@@ -98,7 +98,7 @@ class Registration extends React.Component {
           <br />
           <p>
             you have alredy account !{' '}
-            <Link to='/auth/products' class='link'>
+            <Link to='/auth/user' class='link'>
               {' '}
               login now
             </Link>
@@ -109,6 +109,6 @@ class Registration extends React.Component {
   }
 }
 
-export default withRouter(Registration);
+export default Registration;
 
 

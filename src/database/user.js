@@ -15,4 +15,4 @@ mongoose
       });
       let UserModel = mongoose.model("User", userSchema);
       
-      module.exports.UserModel = UsersModel;
+      module.exports.UserModel = UserModel;

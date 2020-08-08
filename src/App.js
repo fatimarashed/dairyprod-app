@@ -4,7 +4,15 @@ import axios from 'axios';
 import './App.css';
 //import Product  from './components/Product/Product.js';
 import UsersProduct from './components/UsersProduct/UsersProduct.js';
-import { get } from 'mongoose';
+import Registration from './components/registration/registeration.js';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom"
+
+//import { get } from 'mongoose';
 
 class App extends React.Component {
 
@@ -12,10 +20,10 @@ class App extends React.Component {
     component: null,
     items:[]
   };
-  constructor(props){//syntax
-    super(props);
-    //getItems();
-  }
+  // constructor(props){//syntax
+  //    super(props);
+  //   //getItems();
+  // }
 
   getItems(){
     // get items from db through axios 
@@ -24,12 +32,13 @@ class App extends React.Component {
         
        .then((response) =>{
         this.setState({products: [...this.state.products, response.data]})
+       console.log(response.data)
 
        })
       .catch((err) => {
       console.log("error",err);
      });
-     //when I have the data the use setState for the items;
+     //when I have the data the user setState for the items;
   }
  showAddPrdouctForm() {
     this.setState({
@@ -57,6 +66,20 @@ class App extends React.Component {
               <div className="content">
 
                 {/* here is where the images in the home page  */}
+                <ul className="products"> 
+           
+            
+                     <img src="/images/cheese.jpg" alt="product"/>
+
+                     <img src="/images/cow.jpg" alt="product"/>
+
+                     <img src="/images/pure-ghee-1.jpg" width="275" height="180" alt="product"
+                     />
+           
+           
+           
+
+                </ul>
 
               </div>
               <div>

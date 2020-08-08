@@ -1,8 +1,13 @@
 const express = require ("express");
 const db = require("./../src/database/products");
+let ProductModel = db.ProductModel;
+
 const cors =require("cors");
 
-let ProductModel = db.ProductModel;
+
+const reg = require("./../src/database/user");
+let UserModel = reg.UserModel;
+
 
 let app =express();
 app.use(cors());
