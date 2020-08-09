@@ -1,4 +1,5 @@
 const express = require ("express");
+
 const db = require("./../src/database/products");
 let ProductModel = db.ProductModel;
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/product",(req,res)=>{
+
     const {name,price} = req.body;
 
    let productDocument = new ProductModel({name,price});
@@ -29,17 +31,45 @@ app.post("/product",(req,res)=>{
    });
     
 });
+
  app.get("/products",(req,res)=>{
      ProductModel.find({})
     .then((result) =>{
      res.send(result);
+     console.log(result);
  })
 .catch((err) => {
     res.send(err);
  });
  });
+ 
 
+//registaration user post
 
+app.post("/users",(req,res)=>{
+
+    const { username,
+    email,
+    mobile,
+    password} = req.body;
+
+   let userDocument = new UserModel({username,email,mobile,password});
+ userDocument.save((err)=>{
+    if(err) {
+        console.log(err);
+        res.status(500).send(err);
+    
+    } else{
+        res.status(201).send({username:username,
+            email:email,
+            mobile:mobile,
+            password:password});
+    }    
+   });
+    
+});
+
+//default port and lisetning
 var port = 4000;
 app.listen(port,()=>{
     console.log(`app listening to port ${port}`);

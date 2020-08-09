@@ -4,13 +4,13 @@ import axios from 'axios';
 import './App.css';
 //import Product  from './components/Product/Product.js';
 import UsersProduct from './components/UsersProduct/UsersProduct.js';
-import Registration from './components/registration/registeration.js';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom"
+ import Registration from './components/registration/registeration.js';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Redirect,
+// } from "react-router-dom"
 
 //import { get } from 'mongoose';
 
@@ -18,27 +18,58 @@ class App extends React.Component {
 
   state = {
     component: null,
-    items:[]
+    items:[],
+    products: []
+
   };
   // constructor(props){//syntax
   //    super(props);
   //   //getItems();
   // }
-
-  getItems(){
+componentDidMount() {
+ 
+ // const { name, price } = this.state;
+  axios.get(`http://localhost:4000/products`)
+  .then(res => {
+    const products = res.data;
+    this.setState({ products });
+  })
+//   axios
+//   .post(`http://localhost:4000/product`, {
+//     name, 
+//     price,
+//   })
+//   .then(response => {
+//     console.log(response)
+//     this.setState({products: [...this.state.products, response.data]})
+//     this.handleLangChange();
+//   })
+//   .catch(error => {
+//     console.log('adding error', error);
+  
+//   });
+// }
+//   getItems(){
     // get items from db through axios 
-     axios
-     .get(`http://localhost:4000/${this.state.name}`)
+    //  axios
+    //  .get(`http://localhost:4000/products`)
         
-       .then((response) =>{
-        this.setState({products: [...this.state.products, response.data]})
-       console.log(response.data)
+      //  .then((response) =>{
+      //   this.setState({products: [...this.state.products, response.data]})
+      //  console.log(response.data);
 
-       })
-      .catch((err) => {
-      console.log("error",err);
-     });
-     //when I have the data the user setState for the items;
+      //  })
+    //   .then((result) => {
+    //     console.log(result.data);
+    //      //when I have the data the user setState for the items;
+    //     const items = result.data;
+    //     this.setState({ products: items });
+    //   })
+    //   .catch((err) => {
+    //   console.log("error",err);
+    //  });
+    
+   
   }
  showAddPrdouctForm() {
     this.setState({
@@ -83,7 +114,12 @@ class App extends React.Component {
 
               </div>
               <div>
-                
+              <div>
+          {this.state.products.map((e,i) => (
+          
+            <p key={i}>Name : {e.name} - Price : {e.price}</p>
+          )   )}
+        </div>
               </div>
               <p><br />Welcome to our our website.
          <br />We are group of farmers in the village,who sell organic and homemade dairy products.

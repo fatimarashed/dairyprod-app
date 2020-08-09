@@ -62,7 +62,8 @@ class UsersProduct extends React.Component {
         </div>
         <div>
           {this.state.products.map((e,i) => (
-            <p>name : {e.name} - price : {e.price}</p>
+          
+            <p key={i}>name : {e.name} - price : {e.price}</p>
           )   )}
         </div>
         <form onSubmit={this.handelSubmite.bind(this)} className='box'>
@@ -107,5 +108,3 @@ class UsersProduct extends React.Component {
 }
 
 export default UsersProduct;
-
-
