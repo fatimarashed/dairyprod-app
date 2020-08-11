@@ -68,7 +68,27 @@ app.post("/users",(req,res)=>{
    });
     
 });
+//get for log in 
 
+app.get('/users/:username/:password', (req, res) => {
+    const { username, password } = req.params;
+  
+    var Username = req.body.username;
+    var Password = req.body.password;
+ UserModel.find({ username, password })
+      .then(result => {
+        if (result.length > 0) {
+          res.send(true);
+        } else {
+          res.send(false);
+        }
+        console.log(result);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
+  
 //default port and lisetning
 var port = 4000;
 app.listen(port,()=>{

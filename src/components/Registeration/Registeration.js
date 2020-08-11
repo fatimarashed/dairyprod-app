@@ -1,48 +1,57 @@
-import React from 'react';
+import React  from 'react';
 
 import axios from 'axios';
 
 import { Link, withRouter } from 'react-router-dom';
-class Registration extends React.Component {
+
+class Registeration extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      email: '',
-      mobile:'',
-      password: '',
-     
-    };
   }
-
+  state=  {
+    username: '',
+    email: '',
+    mobile:'',
+    password: '',
+   
+  };
   handelChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
   handelSubmite(e) {
+    console.log('tryin to reeggggggggggggggggggggggggggggggggggggggggggggggggg');
     e.preventDefault();
     const { username, email,mobile, password } = this.state;
+    console.log(username, email,mobile, password);
+    var that = this;
     axios
-      .post(`http://localhost:4000/user`, {
+      .post(`http://localhost:4000/users`, {
         username,
         mobile,
         email,
         password,
       })
       .then(response => {
-        console.log(response)
+        console.log('I have a response ');
         if (response.data) {
           console.log('NOW LOGIN TO CONFIRM YOUR  ACCOUNT');
-          this.props.setUserAuth(true);
-          alert('NOW LOGIN TO CONFIRM YOUR  ACCOUNT');
-          this.props.history.push('/auth/login');
+          // this.props.setUserAuth(true);
+          this.setState({
+            username: '',
+            email: '',
+            mobile:'',
+            password: '',
+          })
+          console.log(that);
+         that.props.history.push('/Home');
         } 
       })
       .catch(error => {
         console.log('registration error', error);
         alert('THIS USERNAME IS ALREADY USED TRY ANOTHER ONE');
-        this.props.setUserAuth(false);
+        // this.props.setUserAuth(false);
         this.setState({
           username:''
         })
@@ -50,14 +59,15 @@ class Registration extends React.Component {
   }
 
   render() {
+  
     return (
       <div className='inner-container'>
-        <div class='h1'>
-          <h1>Dairy products MMilk and</h1>
+        <div className='h1'>
+          <h1>Dairy products  Milk and cheese </h1>
         </div>
         <form onSubmit={this.handelSubmite.bind(this)} className='box'>
           <h1 className='header'>Account Sign Up</h1>
-          <hr class='hr' />
+          <hr className='hr' />
           <br />
           <div className='input-group'>
             <input
@@ -82,7 +92,18 @@ class Registration extends React.Component {
             />
           </div>
           <br />
-
+          
+          <div className='input-group'>
+            <input
+              type='String'
+              name='mobile'
+              value={this.state.mobile}
+              onChange={this.handelChange.bind(this)}
+              className='login-input'
+              placeholder='mobile'
+            />
+          </div>
+          <br />
           <div className='input-group'>
             <input
               type='password'
@@ -94,13 +115,15 @@ class Registration extends React.Component {
             />
           </div>
           <br />
-          <button class='btn'>SignUp</button>
+          <button className='btn'>
+          Sign Up
+            </button>
           <br />
           <p>
             you have alredy account !{' '}
-            <Link to='/auth/user' class='link'>
+            <Link to='/' className='link'>
               {' '}
-              login now
+              Go Home Now!
             </Link>
           </p>
         </form>
@@ -109,6 +132,6 @@ class Registration extends React.Component {
   }
 }
 
-export default Registration;
+export default withRouter(Registeration);
 
 
