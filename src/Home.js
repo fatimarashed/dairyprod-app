@@ -4,14 +4,14 @@ import axios from 'axios';
  import './App.css';
 //import Product  from './components/Product/Product.js';
 import UsersProduct from './components/UsersProduct/UsersProduct.js';
-import Registeration from './components/Registeration/Registeration.js';
+//import Registeration from './components/Registeration/Registeration.js';
 
  import {
-   BrowserRouter as Router,
- Switch,
+  // BrowserRouter as Router,
+ //Switch,
  Link,
-  Route,
-  Redirect,
+  //Route,
+ // Redirect,
 } from "react-router-dom"
 
 //import { get } from 'mongoose';
@@ -84,6 +84,15 @@ componentDidMount() {
     this.setState({products: products});
 }
 
+  addToCart = (product) => {
+    console.log(product);
+    axios.post('/cart',{product}).then(data=>{
+      console.log(data);
+    }).catch(err=>{
+      console.log(err);
+    })
+  }
+
   render() {
     console.log(this.state)
     return (
@@ -102,8 +111,8 @@ componentDidMount() {
               <div className="content">
               <p><br />Welcome to our our website.
          <br />We are group of farmers in the village,who sell organic and homemade dairy products.
-         <br />If you like to know more about our products you can register and have account.If you already have an account you can log in and choose your faovtite</p>
-              <br />
+         <br />If you like to know more about our products you can register and have account.If you already have an account you can log in and choose your favorite product.</p>
+           
            
 
                 {/* here is where the images in the home page  */}
@@ -124,17 +133,26 @@ componentDidMount() {
 
               </div>
               <div>
-              <div>
+              <div className="addcart">
           {this.state.products.map((e,i) => (
-          
-            <p key={i}>Name : {e.name} - Price : {e.price}</p>
+            <div className="">
+              <p key={i}>Name : {e.name} - Price : {e.price}</p>
+              <button   onClick={
+                () =>{
+                  this.addToCart(e);
+                }
+              }> <Link to="/Cart">add to cart </Link></button>
+            </div>
           )   )}
         </div>
               </div>
+              <br/>
+             
              
                
-                <button type='submit' className='btn' onClick={this.showAddPrdouctForm.bind(this)}>add product</button>
+                <button type='submit' className='btn' onClick={this.showAddPrdouctForm.bind(this)}>Add Product"Farmers"</button>
               <br />
+              <br/>
               
           
               {/* <Router> */}
@@ -152,7 +170,10 @@ componentDidMount() {
                
             </div>
             : this.state.component}
+            <br/>
+        <br/>
         </main>
+        
         <footer className="footer">For more information call us at :059-999999</footer>
       </div>
     

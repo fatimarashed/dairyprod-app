@@ -5,9 +5,9 @@ import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
 
 class Registeration extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   state=  {
     username: '',
     email: '',
@@ -51,7 +51,7 @@ class Registeration extends React.Component {
       .catch(error => {
         console.log('registration error', error);
         alert('THIS USERNAME IS ALREADY USED TRY ANOTHER ONE');
-        // this.props.setUserAuth(false);
+       // this.props.setUserAuth(false);
         this.setState({
           username:''
         })
@@ -62,6 +62,7 @@ class Registeration extends React.Component {
   
     return (
       <div className='inner-container'>
+        
         <div className='h1'>
           <h1>Dairy products  Milk and cheese </h1>
         </div>
@@ -121,9 +122,9 @@ class Registeration extends React.Component {
           <br />
           <p>
             you have alredy account !{' '}
-            <Link to='/' className='link'>
+            <Link to='/Login' className='link'>
               {' '}
-              Go Home Now!
+              Log IN  Now!
             </Link>
           </p>
         </form>

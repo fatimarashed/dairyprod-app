@@ -1,16 +1,16 @@
 import React  from 'react';
 
-import Login  from './components/Login/Login.js';
+import Login  from './components/Login/Login';
 //import UsersProduct from './components/UsersProduct/UsersProduct.js';
 import Registeration from './components/Registeration/Registeration.js';
  import Home from './Home';
-
+ import Cart from './components/Cart/Cart'
 
  import {
    BrowserRouter as Router,
  Switch,
   Route,
-  Redirect,
+  //Redirect,
 } from "react-router-dom"
  class App extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ import Registeration from './components/Registeration/Registeration.js';
     this.state = {
       
     };
+    
   }
   setUserAuth = (value) => this.setState({ isAuthenticated: true });
   render() {
@@ -27,6 +28,7 @@ import Registeration from './components/Registeration/Registeration.js';
         <Router>
           <Switch>
           <Route path="/" exact={true} component={Home} />
+          <Route path="/Cart" exact={true} component={Cart} />
             
               <Login path="/Login" setUserAuth={this.setUserAuth}  component={Login}/>
               

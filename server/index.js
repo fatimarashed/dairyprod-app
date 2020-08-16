@@ -2,7 +2,7 @@ const express = require ("express");
 
 const db = require("./../src/database/products");
 let ProductModel = db.ProductModel;
-
+let CartModel = require('../src/database/cart');
 const cors =require("cors");
 
 
@@ -14,10 +14,12 @@ let app =express();
 app.use(cors());
 
 app.use(express.json());
+//product post (userproducts)
 
 app.post("/product",(req,res)=>{
 
     const {name,price} = req.body;
+    
 
    let productDocument = new ProductModel({name,price});
    productDocument.save((err)=>{
@@ -88,6 +90,37 @@ app.get('/users/:username/:password', (req, res) => {
         res.send(err);
       });
   });
+  //cart 
+  
+app.post("/cart",(req,res)=>{
+
+  const {name,price} = req.body;
+  
+
+ let cartDocument = new CartModel({name,price});
+ cartDocument.save((err) => {
+  if(err) {
+      console.log(err);
+      res.status(500).send(err);
+  
+  } else{
+      res.status(201).send({name: name,price: price});
+  }    
+ });
+  
+});
+
+app.get("/carts",(req,res)=>{
+  CartModel.find({})
+  .then((result) =>{
+   res.send(result);
+   console.log(result);
+})
+.catch((err) => {
+  res.send(err);
+});
+});
+
   
 //default port and lisetning
 var port = 4000;

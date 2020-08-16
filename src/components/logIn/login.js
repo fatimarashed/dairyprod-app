@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Login extends React.Component {
@@ -82,7 +82,7 @@ class Login extends React.Component {
           />
           <br />
           <button>
-            <Link to="/">Log In</Link>
+            <Link to="/Home">Log In</Link>
             </button>
           <br />
           Dont have an account ?{' '}

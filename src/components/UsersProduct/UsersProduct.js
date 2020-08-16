@@ -1,5 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import {
+  // BrowserRouter as Router,
+ //Switch,
+ Link,
+  //Route,
+ // Redirect,
+} from "react-router-dom"
+
 
    
 
@@ -97,11 +105,14 @@ class UsersProduct extends React.Component {
           
           <br />
           {/* <button type='submit' className='btn' onClick={this.showAddPrdouctForm.bind(this)}>add product</button> */}
-          <button type='submit' className='btn' >add product</button>
+          <button type='submit' className='btn' > add Product </button>
 
           <br />
          
         </form>
+        <br/>
+        <br/>
+
       </div>
     );
   }
