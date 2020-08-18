@@ -26,7 +26,7 @@ body {
 }
 .container {
   grid-area: header;
-  background-color: #203040;
+  background-color:#007bff!important;
   color: #ffffff;
   display: flex;
   justify-content: space-between;
@@ -38,11 +38,12 @@ body {
 .main {
   grid-area: main;
   align-items: center;
-  text-align: center
+  text-align: center;
+  /* background-image: */
 }
 .footer {
   grid-area: footer;
-  background-color: #203040;
+  background-color:#007bff!important;
   color: #ffffff;
   display: flex;
   justify-content: center;

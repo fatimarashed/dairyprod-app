@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link ,withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class Login extends React.Component {
@@ -10,7 +10,7 @@ class Login extends React.Component {
       username: '',
       password: '',
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
@@ -18,10 +18,12 @@ class Login extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
-
+  
   handleSubmit(event) {
+   event.preventDefault();
     const { username, password } = this.state;
-
+    //localStorage.setItem('userId',JSON.stringify(this.state));
+   console.log('username, password',username, password)
     axios
       .get(
         `http://localhost:4000/login/${this.state.username}/${this.state.password}`,
@@ -31,22 +33,25 @@ class Login extends React.Component {
             password: password,
           },
         },
-        
       )
       .then((response) => {
-        console.log(response);
-        if (response.data === true) {
-          this.props.setUserAuth(true);
-          this.props.history.push('/');
+        console.log('heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',response);
+        if (response) {
+          // this.props.setUserAuth(true);
+          // TODO: SAVE USER ID TO LOCAL STORAGE 
+           localStorage.setItem('user_id',response.data[0]._id );
+          // const user_id = localStorage.getItem('userID');
+          this.props.history.push('/Cart');
         } else {
           alert('LogIn faild . . Make sure the information is correct');
+
         }
       })
       .catch((error) => {
         console.log('login error', error);
         this.props.setUserAuth(false);
       });
-    event.preventDefault();
+      
   }
 
   render() {
@@ -59,7 +64,7 @@ class Login extends React.Component {
           </h1>
         </div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <h1 className='header'>Account Login</h1>
           <hr className='hr' />
           <input
@@ -81,9 +86,7 @@ class Login extends React.Component {
             required
           />
           <br />
-          <button>
-            <Link to="/Home">Log In</Link>
-            </button>
+          <button> Login</button>
           <br />
           Dont have an account ?{' '}
           <Link to="/Registeration" className='link'>
@@ -96,4 +99,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default withRouter(Login);

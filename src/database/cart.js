@@ -9,10 +9,9 @@ mongoose
         console.log(" Err when conecting To DataBase ", err);
     });
     let cartSchema = mongoose.Schema({
-        name: { type: String },        
-        price:{type: String},
-        count: {type:Number},
-        total:{type: Number},
+        product_id: { type: String },        
+        user_id:{type: String},
+        quantity: {type:Number},
       });
 
       let CartModel = mongoose.model("Cart", cartSchema);

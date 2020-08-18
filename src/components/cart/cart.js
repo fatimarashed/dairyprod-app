@@ -12,20 +12,18 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      price: "",
-      // count: 0,
-      // total: "",
-      productsCart: null,
+      items: []
     };
   }
 
   
   componentDidMount() {
-    axios.get(`http://localhost:4000/carts`).then((res) => {
-      const productsCart = res.data;
-      console.log(productsCart);
-      this.setState({ productsCart });
+    //TODO GET USER ID FROM LOCALSTORAGE 
+    var user_id = localStorage.getItem('user_id');
+    axios.post(`http://localhost:4000/carts`, {user_id: user_id} ).then((res) => {
+      const items = res.data;
+      console.log('cart iteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeems',items);
+      this.setState({ items});
     });
   }
 
@@ -40,15 +38,15 @@ class Cart extends React.Component {
     });
   }
 
-  handelSubmite(e) {
-    e.preventDefault();
-    console.log("Inside submit");
-    //const { name, price, count, total } = this.state;
-    axios.get(`http://localhost:4000/products`).then((res) => {
-      const productsCart = res.data;
-      this.setState({ productsCart: productsCart });
-    });
-  }
+  // handelSubmite(e) {
+  //   e.preventDefault();
+  //   console.log("Inside submit");
+  //  const { name, price, count, total } = this.state;
+  //   axios.get(`http://localhost:4000/products`).then((res) => {
+  //     const productsCart = res.data;
+  //     this.setState({ productsCart: productsCart });
+  //   });
+  // }
 
   render() {
     console.log(this.state.productsCart);
@@ -62,9 +60,9 @@ class Cart extends React.Component {
           <hr className='hr' />
           <br />
       <div className="Cart">
-        {this.state.productsCart ? (
-          <Products productsCart={this.state.productsCart} />
-        ) : null}
+        {this.state.items.length != 0 ? (
+          <Products productsCart={this.state.items} />
+        ) : 'No items in the Cart'}
       </div>
       <br/>
       <br/>
@@ -73,7 +71,7 @@ class Cart extends React.Component {
             </button>
       <br/>
 
-      <footer className="footer">Total : 2 $</footer>
+      <footer className="footer">Total : 0 $</footer>
       </div>
     );
   }

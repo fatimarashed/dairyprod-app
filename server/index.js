@@ -10,6 +10,7 @@ const reg = require("./../src/database/user");
 let UserModel = reg.UserModel;
 
 
+
 let app =express();
 app.use(cors());
 
@@ -72,50 +73,70 @@ app.post("/users",(req,res)=>{
 });
 //get for log in 
 
-app.get('/users/:username/:password', (req, res) => {
+app.get('/login/:username/:password', (req, res) => {
     const { username, password } = req.params;
-  
     var Username = req.body.username;
     var Password = req.body.password;
- UserModel.find({ username, password })
-      .then(result => {
-        if (result.length > 0) {
-          res.send(true);
-        } else {
-          res.send(false);
-        }
-        console.log(result);
-      })
-      .catch(err => {
-        res.send(err);
-      });
+  
+  UserModel.find({ username,password })
+        .then((result) => {
+          res.send(result);
+          // if (result.length > 0) {
+          //   res.send(result);
+          // } else {
+          //   res.send('false');
+          // }
+          console.log('user infoooooooooooooooooooooooooooooooooooooooo',result);
+        })
+        .catch(err => {
+          res.send(err);
+        });
   });
   //cart 
   
 app.post("/cart",(req,res)=>{
-
-  const {name,price} = req.body;
+  console.log(req.body);
+  const {product_id,user_id,quantity} = req.body;
   
 
- let cartDocument = new CartModel({name,price});
+ let cartDocument = new CartModel({product_id,user_id,quantity});
  cartDocument.save((err) => {
   if(err) {
       console.log(err);
       res.status(500).send(err);
   
   } else{
-      res.status(201).send({name: name,price: price});
+      res.status(201).send({product_id: product_id,user_id: user_id,quantity:quantity}); // TODO: CHANGe 1 to quantity 
   }    
  });
   
 });
+//cart with quantity
 
-app.get("/carts",(req,res)=>{
-  CartModel.find({})
-  .then((result) =>{
-   res.send(result);
-   console.log(result);
-})
+app.post("/carts",(req,res)=>{
+  CartModel.find({user_id:req.body.user_id})
+  .then(async (result) =>{
+    var items =  result.map(async element => {
+     var product =  await ProductModel.find({_id: element.product_id})
+     return product;
+    });
+    var itemsPromises = await Promise.all(items);
+    var allProducts = [];
+    itemsPromises.forEach((e,i) => { allProducts.push({name:e[0].name, price:e[0].price});} );
+    
+    for(var i = 0; i < allProducts.length; i++){
+      console.log('myObjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
+      console.log(allProducts[i]);
+      
+      allProducts[i]["quantity"] =  result[i]['quantity'];
+      console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',allProducts[i].quantity);
+      console.log(allProducts[i]);
+      console.log(Object.keys(allProducts[i]));
+
+    }
+    console.log(Object.keys(allProducts[0]));
+    console.log('allProductsssssssssssssssssssssssssssssssss after',allProducts[0]);
+    res.send(allProducts);})
 .catch((err) => {
   res.send(err);
 });

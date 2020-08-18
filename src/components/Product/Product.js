@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+//import axios from "axios";
 
 class Product extends React.Component {
   constructor(props) {
@@ -7,6 +7,7 @@ class Product extends React.Component {
     this.state = {
       name: "",
       price: "",
+      count:""
     };
   }
 
@@ -15,32 +16,32 @@ class Product extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
-  handelSubmite(e) {
-    e.preventDefault();
-    const { name, price } = this.state;
-    axios
-      .post(`http://localhost:4000/product`, {
-        name,
-        price,
-      })
-      .then((response) => {
-        console.log(response);
-        /*if (response.data) {
-          console.log('NOW ADD YOUR PRODUCT');
-         this.props.setUserAuth(true);
-          alert('NOW ADD YOUR PRODUCT ');
-          this.props.history.push('/auth/add');
-        }*/
-      })
-      .catch((error) => {
-        console.log("adding error", error);
-        /* alert('THIS PRODUCT IS ALREADY ADDED TRY ANOTHER ONE');
-        this.props.setUserAuth(false);
-        this.setState({
-          name:''
-        })*/
-      });
-  }
+  // handelSubmite(e) {
+  //   e.preventDefault();
+  //   const { name, price } = this.state;
+  //   axios
+  //     .post(`http://localhost:4000/product`, {
+  //       name,
+  //       price,
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       /*if (response.data) {
+  //         console.log('NOW ADD YOUR PRODUCT');
+  //        this.props.setUserAuth(true);
+  //         alert('NOW ADD YOUR PRODUCT ');
+  //         this.props.history.push('/auth/add');
+  //       }*/
+  //     })
+  //     .catch((error) => {
+  //       console.log("adding error", error);
+  //       /* alert('THIS PRODUCT IS ALREADY ADDED TRY ANOTHER ONE');
+  //       this.props.setUserAuth(false);
+  //       this.setState({
+  //         name:''
+  //       })*/
+  //     });
+  // }
 
   render() {
     console.log(this.props);
@@ -52,18 +53,17 @@ class Product extends React.Component {
               <th>Name</th>
               <th>Price</th>
               <th>Count</th>
-              <th> Total</th>
             </tr>
           </thead>
           <tbody>
-            {this.props.productsCart.map((e, i) => (
+            {this.props.productsCart.length > 0 ?this.props.productsCart.map((e, i) => (
               <tr key={i}>
                 <td> {e.name}</td>
                 <td> {e.price}</td>
-                {/* <td>e.count</td>
-      <td>e.price*e.count</td> */}
+                <td>{e.quantity}</td>
+      
               </tr>
-            ))}
+            )): 'No items in the Cart'}
           </tbody>
         </table>
         {/* <div className="inner-container">

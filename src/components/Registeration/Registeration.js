@@ -5,16 +5,17 @@ import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
 
 class Registeration extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-  state=  {
+ constructor(props) {
+    super(props);
+
+  this.state=  {
     username: '',
     email: '',
     mobile:'',
     password: '',
    
   };
+}
   handelChange(e) {
     this.setState({
       [e.target.name]: e.target.value,

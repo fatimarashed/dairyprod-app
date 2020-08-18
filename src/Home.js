@@ -1,18 +1,12 @@
 import React  from 'react';
 import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
 
  import './App.css';
 //import Product  from './components/Product/Product.js';
 import UsersProduct from './components/UsersProduct/UsersProduct.js';
 //import Registeration from './components/Registeration/Registeration.js';
 
- import {
-  // BrowserRouter as Router,
- //Switch,
- Link,
-  //Route,
- // Redirect,
-} from "react-router-dom"
 
 //import { get } from 'mongoose';
 
@@ -21,7 +15,8 @@ class Home extends React.Component {
   state = {
     component: null,
     items:[],
-    products: []
+    products: [],
+    quanity:{id: null, q: 0}
 
   };
   // constructor(props){//syntax
@@ -85,9 +80,13 @@ componentDidMount() {
 }
 
   addToCart = (product) => {
-    console.log(product);
-    axios.post('/cart',{product}).then(data=>{
+    console.log('productinfo : ',product);
+     product.user_id = localStorage.getItem('user_id');
+    var that = this;
+    axios.post('http://localhost:4000/cart',product).then(data=>{
       console.log(data);
+      that.props.history.push('/Cart');
+
     }).catch(err=>{
       console.log(err);
     })
@@ -134,14 +133,15 @@ componentDidMount() {
               </div>
               <div>
               <div className="addcart">
-          {this.state.products.map((e,i) => (
-            <div className="">
-              <p key={i}>Name : {e.name} - Price : {e.price}</p>
+          {this.state.products.map((product,i) => (
+            <div className="" key={i}>
+              <p key={i}>Name : {product.name} - Price : {product.price}</p>
+              <input type = 'text'  onChange={(e) => this.setState({quanity:{id:product._id, q:e.target.value}})}></input>
               <button   onClick={
                 () =>{
-                  this.addToCart(e);
+                  this.addToCart({product_id: product._id, quantity:parseInt(this.state.quanity.q)});
                 }
-              }> <Link to="/Cart">add to cart </Link></button>
+              }>add to cart </button>
             </div>
           )   )}
         </div>
@@ -182,4 +182,4 @@ componentDidMount() {
 };
 
 
-export default Home;
+export default withRouter(Home);

@@ -11,7 +11,7 @@ mongoose
     let productsSchema = mongoose.Schema({
         name: { type: String },
         
-        price:{type: String},
+        price:{type: Number},
       });
 
       let ProductModel = mongoose.model("Products", productsSchema);

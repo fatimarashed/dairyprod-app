@@ -8,8 +8,8 @@ mongoose
         console.log(" Err when conected To DataBase ", err);
     });
     let userSchema = mongoose.Schema({
-        username: { type: String, unique: true, required: true },
-        email: { type: String, required: true },
+        username: { type: String, unique: true, required: [true,"please enter a name"] },
+        email: { type: String, unique:true,required:  [true,"please enter an email"], },
         mobile:{type:String,required:true},
         password: { type: String, required: true },
       });
