@@ -54,13 +54,13 @@ class Cart extends React.Component {
     return (
       <div className='inner-container'>
         <div className='h1'>
-          <h1>Dairy products  Milk and cheese </h1>
+          <h1> </h1>
         </div>
         <h1 className='header'>Cart</h1>
           <hr className='hr' />
           <br />
       <div className="Cart">
-        {this.state.items.length != 0 ? (
+        {this.state.items.length !== 0 ? (
           <Products productsCart={this.state.items} />
         ) : 'No items in the Cart'}
       </div>

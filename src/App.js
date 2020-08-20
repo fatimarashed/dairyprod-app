@@ -5,13 +5,17 @@ import Login  from './components/Login/Login';
 import Registeration from './components/Registeration/Registeration.js';
  import Home from './Home';
  import Cart from './components/Cart/Cart'
+ import NavBar from './components/Navbar/Navbar'
 
  import {
    BrowserRouter as Router,
  Switch,
   Route,
   //Redirect,
-} from "react-router-dom"
+} from "react-router-dom";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
  class App extends React.Component {
   constructor(props) {
     super(props);
@@ -24,8 +28,11 @@ import Registeration from './components/Registeration/Registeration.js';
   render() {
     return (
       <div className="app">
-       
+        
         <Router>
+        <NavBar />
+       
+
           <Switch>
           <Route path="/" exact={true} component={Home} />
           <Route path="/Cart" exact={true} component={Cart} />
