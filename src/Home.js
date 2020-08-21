@@ -85,13 +85,13 @@ class Home extends React.Component {
                 </p>
               </div>
 
-              {/* here is where the images in the home page  */}
-              {/* <ul className="products"> 
+              {/* //here is where the images in the home page   */}
+             <ul className="products"> 
            
             
                      <img src="/images/cheese.jpg" alt="product"/>
 
-                     <img src="/images/cow.jpg" alt="product"/>
+                     <img src="/images/3371550.jpg" width="275" height="180"  alt="product"/>
 
                      <img src="/images/pure-ghee-1.jpg" width="275" height="180" alt="product"
                      />
@@ -99,7 +99,7 @@ class Home extends React.Component {
            
            
 
-                </ul> */}
+                </ul>
               <Container className="c1" fluid="md">
                 {this.state.products.map((product, i) => {
                   counter++;
@@ -110,7 +110,7 @@ class Home extends React.Component {
                         <Col>
                           <CardDeck>
                             <Card>
-                              <Card.Header className="header1">
+                              <Card.Header className="header">
                                 Dairy Product
                               </Card.Header>
                               <Card.Body>
@@ -128,8 +128,9 @@ class Home extends React.Component {
                                 <Form inline>
                                   <FormControl type="text" placeholder="count" className="mr-sm-2"  onChange={(e) => this.setState({quanity:{id:this.state.products[i]._id, q:e.target.value}})}/>
 
-<Button
-                                              variant="info"
+
+                                  <Button className="safa"
+                                              // variant="info"
                                               onClick={() => {
                                                 this.addToCart({
                                                   product_id: product._id,
@@ -139,7 +140,7 @@ class Home extends React.Component {
                                             >
                                               add to cart
                                             </Button>
-                                  
+                                              
                                 </Form>
                               </Card.Body>
                             </Card>
@@ -150,7 +151,7 @@ class Home extends React.Component {
                         <Col>
                           <CardDeck>
                             <Card>
-                              <Card.Header className="header1">
+                              <Card.Header className="header" id="" style={{'backgroundColor':'#ff99cc'}}>
                                 Dairy Product
                               </Card.Header>
                               <Card.Body>
@@ -180,8 +181,8 @@ class Home extends React.Component {
                                     }
                                   />
 
-                                  <Button
-                                    variant="success"
+                                  <Button className="safa"
+                                    
                                     onClick={() => {
                                       this.addToCart({
                                         product_id: this.state.products[i + 1]?this.state.products[i + 1]
@@ -205,7 +206,7 @@ class Home extends React.Component {
                         <Col>
                           <CardDeck>
                             <Card>
-                              <Card.Header className="header1">
+                              <Card.Header className="header">
                                 Dairy Product
                               </Card.Header>
                               <Card.Body>
@@ -235,8 +236,8 @@ class Home extends React.Component {
                                     }
                                   />
 
-                                  <Button
-                                    variant="success"
+<Button className="safa"
+                                    // variant="success"
                                     onClick={() => {
                                       this.addToCart({
                                         product_id:  this.state.products[i + 2]?this.state.products[i + 2]._id:'',
@@ -373,15 +374,7 @@ class Home extends React.Component {
               <br />
 
               {/* <Router> */}
-              <div>
-                <button>
-                  <Link to="/Registeration">Registeration</Link>
-                </button>
-
-                <button>
-                  <Link to="/Login">Log In</Link>
-                </button>
-              </div>
+             
               {/* </Router> */}
             </div>
           ) : (
