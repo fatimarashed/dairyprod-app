@@ -73,7 +73,7 @@ class Home extends React.Component {
             <div className="content">
               <div className="about">
                 <p>
-                  <br />
+                  {/* <br /> */}
                   Welcome to our our website.
                   <br />
                   We are group of farmers in the village,who sell organic and
@@ -86,14 +86,14 @@ class Home extends React.Component {
               </div>
 
               {/* //here is where the images in the home page   */}
-             <ul className="products"> 
+             <ul > 
            
             
-                     <img src="/images/cheese.jpg" alt="product"/>
+                     <img  className="first" src="/images/cheese.jpg" alt="product"/>
 
-                     <img src="/images/3371550.jpg" width="275" height="180"  alt="product"/>
+                     <img className="sec" src="/images/3371550.jpg" width="275" height="180"  alt="product"/>
 
-                     <img src="/images/pure-ghee-1.jpg" width="275" height="180" alt="product"
+                     <img className="lass" src="/images/pure-ghee-1.jpg"  width="275" height="180"  alt="product"
                      />
            
            
@@ -365,7 +365,7 @@ class Home extends React.Component {
 
               <button
                 type="submit"
-                className="btn"
+                className="safa"
                 onClick={this.showAddPrdouctForm.bind(this)}
               >
                 Add Product"Farmers"

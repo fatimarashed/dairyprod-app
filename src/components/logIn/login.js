@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Link ,withRouter } from 'react-router-dom';
+import { Form,Button } from 'react-bootstrap';
+
 import axios from 'axios';
 
 class Login extends React.Component {
@@ -63,7 +65,30 @@ class Login extends React.Component {
             <span id='spanw'> Dairy product Milk and cheese </span> <span id='finde'>APP</span>{' '}
           </h1>
         </div>
-
+        <h1 className='header'>Account Login</h1>
+        <Form  onSubmit={this.handleSubmit.bind(this)} >
+  <Form.Group controlId="formGroupEmail">
+    <Form.Label>User Name</Form.Label>
+    <Form.Control name='username'
+            placeholder='username'
+            value={this.state.username}
+            onChange={this.handleChange}
+            required />
+  </Form.Group>
+  <Form.Group controlId="formGroupPassword">
+    <Form.Label>Password</Form.Label>
+    <Form.Control   type='password'
+            name='password'
+            placeholder='Password'
+            value={this.state.password}
+            onChange={this.handleChange}
+            required />
+  </Form.Group>
+  <Button className="safa" type="submit">
+    Log In
+  </Button>
+</Form>
+{/* 
         <form onSubmit={this.handleSubmit.bind(this)}>
           <h1 className='header'>Account Login</h1>
           <hr className='hr' />
@@ -93,7 +118,7 @@ class Login extends React.Component {
             {' '}
             register now
           </Link>{' '}
-        </form>
+        </form> */}
       </div>
       </div>
     );
