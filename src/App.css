@@ -8,7 +8,7 @@ body {
   margin: 0;
 }
 .full-width {
-  width: 100%;
+  width: 50%;
 }
 #root {
   height: 100%;
@@ -22,17 +22,51 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
+  font-family: Georgia, serif;
+  
+}
+
+.header{
+  
+  background-color:#ff99cc !important;
+  font-family: Georgia, serif;
+  
+}
+
+.header1{
+  
+  background-color:#8d7d7d !important;
+  color: #ffffff!important;
+  font-size: 30px !important;
+  font-weight:300 !important;
+  font-family: Georgia, serif;
+  
+
   
 }
 .container {
   grid-area: header;
-  background-color:#007bff!important;
-  color: #ffffff;
+  /* background-color:#F22818!important; */
+widows: 38%!important;
+height: 42%!important;
+  color: #212529;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  height:60px
+  /* padding: 0.5rem; */
+
+  /* height:60px; */
+}
+.c1{
+  height: 42% !important;
+  width: 38%;
+  float:left;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+ 
+
 }
 
 .main {
@@ -41,14 +75,20 @@ body {
   text-align: center;
   /* background-image: */
 }
+.btn{
+  color:#FF4500;
+}
 .footer {
   grid-area: footer;
-  background-color:#007bff!important;
+  background-color:#8d7d7d !important;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  height:40px
+  height:40px;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  margin-bottom: 0px;
 }
 .products {
   display: flex;
@@ -56,5 +96,70 @@ body {
   align-items: center;
   flex-wrap: wrap;
   margin-top: 30px;
+  font-size: x-large;
+  font-family: Georgia, serif;
  
+}
+.mr-auto{
+  color:white !important;
+  font-size: 62%;
+  font-family: Georgia, serif;
+}
+.safa {
+background-color: #8d7d7d !important;
+transition-duration: 0.4s;
+border:2px #ff99cc;
+font-family: Georgia, serif;
+}
+.first{
+  margin-left: 25px;
+}
+
+/* body{
+  background-color:grey;
+} */
+a{
+  font-size:13px !important;
+  color:white !important;
+  font-weight:200 !important;
+  font-family: Georgia, serif;
+}
+.registeration{
+  margin-left:25px;
+}
+.home{
+  margin-left:600px;
+  
+}
+.dairy{
+  font-size: 30px !important;
+  font-weight:500 !important;
+  color: white !important;
+  /* font-family:  Hand, cursive */
+  font-family: Brush Script MT, Brush Script Std, cursive
+
+}
+a:hover{
+  background-color:#ff99cc;
+}
+.safa:hover{
+  background-color:#ff99cc;
+}
+.about{
+  font-size:16px;
+  font-weight: 100;
+  font-family: Georgia, serif;
+}
+.foot{
+ 
+  background-color:#8d7d7d !important;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:40px;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  margin-bottom:1px;
+  
 }

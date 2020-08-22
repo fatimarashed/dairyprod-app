@@ -117,7 +117,7 @@ class Registeration extends React.Component {
             />
           </div>
           <br />
-          <button className='btn'>
+          <button className='safa'>
           Sign Up
             </button>
           <br />

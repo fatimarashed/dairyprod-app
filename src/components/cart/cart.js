@@ -54,24 +54,38 @@ class Cart extends React.Component {
     return (
       <div className='inner-container'>
         <div className='h1'>
-          <h1>Dairy products  Milk and cheese </h1>
+          <h1> </h1>
         </div>
+        <br/>
+        <br/>
         <h1 className='header'>Cart</h1>
           <hr className='hr' />
           <br />
+          <br/>
+          <br/>
+
       <div className="Cart">
-        {this.state.items.length != 0 ? (
+        {this.state.items.length !== 0 ? (
           <Products productsCart={this.state.items} />
         ) : 'No items in the Cart'}
       </div>
       <br/>
       <br/>
-      <button>
+      <button className="safa">
             <Link to="/Home">Go Home</Link>
             </button>
       <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
 
-      <footer className="footer">Total : 0 $</footer>
+      <footer className="foot">Total : </footer>
       </div>
     );
   }
