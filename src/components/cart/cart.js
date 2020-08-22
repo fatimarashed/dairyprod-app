@@ -58,7 +58,7 @@ class Cart extends React.Component {
         </div>
         <br/>
         <br/>
-        <h1 className='header'>Cart</h1>
+        <h1 className='header'>My Cart</h1>
           <hr className='hr' />
           <br />
           <br/>
