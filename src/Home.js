@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link, withRouter } from "react-router-dom";
+import {  withRouter } from "react-router-dom";
 
 import {
   Card,
@@ -64,7 +64,7 @@ class Home extends React.Component {
 
   render() {
     var counter = 0;
-    var component;
+    // var component;
     console.log(this.state);
     return (
       <div className="grid-container">
@@ -103,7 +103,7 @@ class Home extends React.Component {
               <Container className="c1" fluid="md">
                 {this.state.products.map((product, i) => {
                   counter++;
-                  if (counter == 1) {
+                  if (counter === 1) {
                     return (
                       <Row key={i}>
                         {this.state.products[i]?
@@ -259,7 +259,7 @@ class Home extends React.Component {
                     );
                   } else {
                     counter++;
-                    if (counter == 3) {
+                    if (counter === 3) {
                       counter = 0;
                     }
                     return;

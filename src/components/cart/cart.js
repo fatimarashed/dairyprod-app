@@ -6,7 +6,6 @@ import {
  Link
 
 } from "react-router-dom"
-import Product from "../Product/Product";
 
 
 class Cart extends React.Component {
@@ -79,8 +78,14 @@ class Cart extends React.Component {
       <br/>
       <br/>
       <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
 
-      <footer className="footer">Total : </footer>
+      <footer className="foot">Total : </footer>
       </div>
     );
   }

@@ -88,6 +88,7 @@ height: 42%!important;
   height:40px;
   font-size: 15px;
   font-family: Georgia, serif;
+  margin-bottom: 0px;
 }
 .products {
   display: flex;
@@ -148,4 +149,17 @@ a:hover{
   font-size:16px;
   font-weight: 100;
   font-family: Georgia, serif;
+}
+.foot{
+ 
+  background-color:#8d7d7d !important;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:40px;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  margin-bottom:1px;
+  
 }

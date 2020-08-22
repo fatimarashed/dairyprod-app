@@ -11,7 +11,7 @@ import Registeration from './components/Registeration/Registeration.js';
    BrowserRouter as Router,
  Switch,
   Route,
-  //Redirect,
+ 
 } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
