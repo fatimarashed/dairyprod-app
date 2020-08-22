@@ -85,7 +85,7 @@ class Cart extends React.Component {
       <br/>
       <br/>
 
-      <footer className="foot">Total : </footer>
+      <footer className="foot">Total 20 $: </footer>
       </div>
     );
   }
