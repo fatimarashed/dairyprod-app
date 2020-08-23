@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {  withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import {
   Card,
@@ -86,175 +86,227 @@ class Home extends React.Component {
               </div>
 
               {/* //here is where the images in the home page   */}
-             <ul > 
-           
-            
-                     <img  className="first" src="/images/cheese.jpg" alt="product"/>
+              <ul>
+                <img className="first" src="/images/cheese.jpg" alt="product" />
 
-                     <img className="sec" src="/images/3371550.jpg" width="275" height="180"  alt="product"/>
+                <img
+                  className="sec"
+                  src="/images/3371550.jpg"
+                  width="275"
+                  height="180"
+                  alt="product"
+                />
 
-                     <img className="lass" src="/images/pure-ghee-1.jpg"  width="275" height="180"  alt="product"
-                     />
-           
-           
-           
-
-                </ul>
+                <img
+                  className="lass"
+                  src="/images/pure-ghee-1.jpg"
+                  width="275"
+                  height="180"
+                  alt="product"
+                />
+              </ul>
               <Container className="c1" fluid="md">
                 {this.state.products.map((product, i) => {
                   counter++;
                   if (counter === 1) {
                     return (
                       <Row key={i}>
-                        {this.state.products[i]?
-                        <Col>
-                          <CardDeck>
-                            <Card>
-                              <Card.Header className="header">
-                                Dairy Product
-                              </Card.Header>
-                              <Card.Body>
-                                <Card.Title>Product</Card.Title>
-                                <ListGroup className="list-group-flush">
-                                  <ListGroupItem>
-                                    Name : {this.state.products[i]?this.state.products[i].name:""}
-                                  </ListGroupItem>
-                                  <ListGroupItem>
-                        
-                                    Price : {this.state.products[i]?this.state.products[i].price:""}
-                                  </ListGroupItem>
-                                </ListGroup>
+                        {this.state.products[i] ? (
+                          <Col>
+                            <CardDeck>
+                              <Card>
+                                <Card.Header className="header">
+                                  Dairy Product
+                                </Card.Header>
+                                <Card.Body>
+                                  <Card.Title>Product</Card.Title>
+                                  <ListGroup className="list-group-flush">
+                                    <ListGroupItem>
+                                      Name :{" "}
+                                      {this.state.products[i]
+                                        ? this.state.products[i].name
+                                        : ""}
+                                    </ListGroupItem>
+                                    <ListGroupItem>
+                                      Price :{" "}
+                                      {this.state.products[i]
+                                        ? this.state.products[i].price
+                                        : ""}
+                                    </ListGroupItem>
+                                  </ListGroup>
 
-                                <Form inline>
-                                  <FormControl type="text" placeholder="count" className="mr-sm-2"  onChange={(e) => this.setState({quanity:{id:this.state.products[i]._id, q:e.target.value}})}/>
+                                  <Form inline>
+                                    <FormControl
+                                      type="text"
+                                      placeholder="count"
+                                      className="mr-sm-2"
+                                      onChange={(e) =>
+                                        this.setState({
+                                          quanity: {
+                                            id: this.state.products[i]._id,
+                                            q: e.target.value,
+                                          },
+                                        })
+                                      }
+                                    />
 
+                                    <Button
+                                      className="safa"
+                                      // variant="info"
+                                      onClick={() => {
+                                        this.addToCart({
+                                          product_id: product._id,
+                                          quantity: parseInt(
+                                            this.state.quanity.q
+                                          ),
+                                        });
+                                      }}
+                                    >
+                                      add to cart
+                                    </Button>
+                                  </Form>
+                                </Card.Body>
+                              </Card>
+                            </CardDeck>
+                          </Col>
+                        ) : (
+                          <Col></Col>
+                        )}
+                        {this.state.products[i + 1] ? (
+                          <Col>
+                            <CardDeck>
+                              <Card>
+                                <Card.Header
+                                  className="header"
+                                  id=""
+                                  style={{ backgroundColor: "#ff99cc" }}
+                                >
+                                  Dairy Product
+                                </Card.Header>
+                                <Card.Body>
+                                  <Card.Title>Product</Card.Title>
+                                  <ListGroup className="list-group-flush">
+                                    <ListGroupItem>
+                                      Name :{" "}
+                                      {this.state.products[i + 1]
+                                        ? this.state.products[i + 1].name
+                                        : ""}{" "}
+                                    </ListGroupItem>
+                                    <ListGroupItem>
+                                      {" "}
+                                      Price :{" "}
+                                      {this.state.products[i + 1]
+                                        ? this.state.products[i + 1].price
+                                        : ""}
+                                    </ListGroupItem>
+                                  </ListGroup>
 
-                                  <Button className="safa"
-                                              // variant="info"
-                                              onClick={() => {
-                                                this.addToCart({
-                                                  product_id: product._id,
-                                                  quantity: parseInt(this.state.quanity.q),
-                                                });
-                                              }}
-                                            >
-                                              add to cart
-                                            </Button>
-                                              
-                                </Form>
-                              </Card.Body>
-                            </Card>
-                          </CardDeck>
-                        </Col>
-                        :<Col></Col>}
-                          {this.state.products[i +1]?
-                        <Col>
-                          <CardDeck>
-                            <Card>
-                              <Card.Header className="header" id="" style={{'backgroundColor':'#ff99cc'}}>
-                                Dairy Product
-                              </Card.Header>
-                              <Card.Body>
-                                <Card.Title>Product</Card.Title>
-                                <ListGroup className="list-group-flush">
-                                  <ListGroupItem>
-                                    Name : {this.state.products[i + 1]?this.state.products[i + 1].name:""}{" "}
-                                  </ListGroupItem>
-                                  <ListGroupItem>
-                                    {" "}
-                                    Price : {this.state.products[i + 1]?this.state.products[i + 1].price:""}
-                                  </ListGroupItem>
-                                </ListGroup>
+                                  <Form inline>
+                                    <FormControl
+                                      type="text"
+                                      placeholder="count"
+                                      className="mr-sm-2"
+                                      onChange={(e) =>
+                                        this.setState({
+                                          quanity: {
+                                            id: this.state.products[i + 1]
+                                              ? this.state.products[i + 1]._id
+                                              : "",
+                                            q: e.target.value,
+                                          },
+                                        })
+                                      }
+                                    />
 
-                                <Form inline>
-                                  <FormControl
-                                    type="text"
-                                    placeholder="count"
-                                    className="mr-sm-2"
-                                    onChange={(e) =>
-                                      this.setState({
-                                        quanity: {
-                                          id: this.state.products[i + 1]?this.state.products[i + 1]._id:"",
-                                          q: e.target.value,
-                                        },
-                                      })
-                                    }
-                                  />
+                                    <Button
+                                      className="safa"
+                                      onClick={() => {
+                                        this.addToCart({
+                                          product_id: this.state.products[i + 1]
+                                            ? this.state.products[i + 1]._id
+                                            : "",
+                                          quantity: parseInt(
+                                            this.state.quanity.q
+                                          ),
+                                        });
+                                      }}
+                                    >
+                                      add to cart
+                                    </Button>
+                                  </Form>
+                                </Card.Body>
+                              </Card>
+                            </CardDeck>
+                          </Col>
+                        ) : (
+                          <Col></Col>
+                        )}
+                        {this.state.products[i + 2] ? (
+                          <Col>
+                            <CardDeck>
+                              <Card>
+                                <Card.Header className="header">
+                                  Dairy Product
+                                </Card.Header>
+                                <Card.Body>
+                                  <Card.Title>Product</Card.Title>
+                                  <ListGroup className="list-group-flush">
+                                    <ListGroupItem>
+                                      Name :{" "}
+                                      {this.state.products[i + 2]
+                                        ? this.state.products[i + 2].name
+                                        : ""}{" "}
+                                    </ListGroupItem>
+                                    <ListGroupItem>
+                                      {" "}
+                                      Price :{" "}
+                                      {this.state.products[i + 2]
+                                        ? this.state.products[i + 2].price
+                                        : ""}
+                                    </ListGroupItem>
+                                  </ListGroup>
 
-                                  <Button className="safa"
-                                    
-                                    onClick={() => {
-                                      this.addToCart({
-                                        product_id: this.state.products[i + 1]?this.state.products[i + 1]
-                                          ._id:"",
-                                        quantity: parseInt(
-                                          this.state.quanity.q
-                                        ),
-                                      });
-                                    }}
-                                   
-                                  >
-                                    add to cart
-                                  </Button>
-                                </Form>
-                              </Card.Body>
-                            </Card>
-                          </CardDeck>
-                        </Col>
-                         :<Col></Col>}
-                            {this.state.products[i +2]?
-                        <Col>
-                          <CardDeck>
-                            <Card>
-                              <Card.Header className="header">
-                                Dairy Product
-                              </Card.Header>
-                              <Card.Body>
-                                <Card.Title>Product</Card.Title>
-                                <ListGroup className="list-group-flush">
-                                  <ListGroupItem>
-                                    Name : {this.state.products[i + 2]?this.state.products[i + 2].name:""}{" "}
-                                  </ListGroupItem>
-                                  <ListGroupItem>
-                                    {" "}
-                                    Price : {this.state.products[i + 2]?this.state.products[i + 2].price:""}
-                                  </ListGroupItem>
-                                </ListGroup>
+                                  <Form inline>
+                                    <FormControl
+                                      type="text"
+                                      placeholder="count"
+                                      className="mr-sm-2"
+                                      onChange={(e) =>
+                                        this.setState({
+                                          quanity: {
+                                            id: this.state.products[i + 2]
+                                              ? this.state.products[i + 2]._id
+                                              : "",
+                                            q: e.target.value,
+                                          },
+                                        })
+                                      }
+                                    />
 
-                                <Form inline>
-                                  <FormControl
-                                    type="text"
-                                    placeholder="count"
-                                    className="mr-sm-2"
-                                    onChange={(e) =>
-                                      this.setState({
-                                        quanity: {
-                                          id: this.state.products[i + 2]?this.state.products[i + 2]._id:"",
-                                          q: e.target.value,
-                                        },
-                                      })
-                                    }
-                                  />
-
-<Button className="safa"
-                                    // variant="success"
-                                    onClick={() => {
-                                      this.addToCart({
-                                        product_id:  this.state.products[i + 2]?this.state.products[i + 2]._id:'',
-                                        quantity: parseInt(
-                                          this.state.quanity.q
-                                        ),
-                                      });
-                                    }}
-                                  >
-                                    add to cart
-                                  </Button>
-                                </Form>
-                              </Card.Body>
-                            </Card>
-                          </CardDeck>
-                        </Col>
-                         :<Col></Col>}
+                                    <Button
+                                      className="safa"
+                                      // variant="success"
+                                      onClick={() => {
+                                        this.addToCart({
+                                          product_id: this.state.products[i + 2]
+                                            ? this.state.products[i + 2]._id
+                                            : "",
+                                          quantity: parseInt(
+                                            this.state.quanity.q
+                                          ),
+                                        });
+                                      }}
+                                    >
+                                      add to cart
+                                    </Button>
+                                  </Form>
+                                </Card.Body>
+                              </Card>
+                            </CardDeck>
+                          </Col>
+                        ) : (
+                          <Col></Col>
+                        )}
                       </Row>
                     );
                   } else {
@@ -374,7 +426,7 @@ class Home extends React.Component {
               <br />
 
               {/* <Router> */}
-             
+
               {/* </Router> */}
             </div>
           ) : (
