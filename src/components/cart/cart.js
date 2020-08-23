@@ -80,7 +80,9 @@ class Cart extends React.Component {
         <br />
         <br />
 
-        <footer className="foot">Total54 $: </footer>
+        <footer className="foot">
+          For more information call us at :059-999999
+        </footer>
       </div>
     );
   }

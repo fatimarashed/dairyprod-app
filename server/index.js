@@ -1,6 +1,6 @@
 const express = require("express");
-const path = require('path');
-const mongoose = require("mongoose"); 
+const path = require("path");
+const mongoose = require("mongoose");
 const db = require("./../src/database/products");
 let ProductModel = db.ProductModel;
 let CartModel = require("../src/database/cart");
@@ -51,14 +51,12 @@ app.post("/users", (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res
-        .status(201)
-        .send({
-          username: username,
-          email: email,
-          mobile: mobile,
-          password: password,
-        });
+      res.status(201).send({
+        username: username,
+        email: email,
+        mobile: mobile,
+        password: password,
+      });
     }
   });
 });
@@ -116,7 +114,7 @@ app.post("/carts", (req, res) => {
       var allProducts = [];
       itemsPromises.forEach((e, i) => {
         allProducts.push({ name: e[0].name, price: e[0].price });
-        console.log("item :",{ name: e[0].name, price: e[0].price });
+        console.log("item :", { name: e[0].name, price: e[0].price });
       });
       console.log(
         "allllllllllllllllllll products after getting it from product table",
@@ -152,7 +150,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 //default port and lisetning
-var port = 4000;
+var port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`app listening to port ${port}`);
 });
