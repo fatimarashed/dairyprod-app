@@ -2,8 +2,11 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://dairy:258fa@cluster0.fcnjg.mongodb.net/dairy?retryWrites=true&w=majority",
-    { useNewUrlParser: true }
+    "mongodb+srv://dairyapp:fa123@cluster0.1sfpd.mongodb.net/dairyapp?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
   )
   .then(() => {
     console.log(" The connecting is good ");
