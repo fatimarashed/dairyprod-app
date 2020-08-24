@@ -314,6 +314,7 @@ class Home extends React.Component {
                     if (counter === 3) {
                       counter = 0;
                     }
+                    // eslint-disable-next-line
                     return;
                   }
                   //             return (
